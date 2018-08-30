@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Container } from 'semantic-ui-react';
+import AddFlight from './addFlight.jsx'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Container>
-          hello
-        </Container>
+        <AddFlight/>
       </div>
     );
   }

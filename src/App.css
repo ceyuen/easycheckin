@@ -26,3 +26,27 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.container {
+  border:solid #1e5abc 2px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.content {
+  padding: 1rem 2rem 1rem 2rem;
+}
+
+.ui.menu {
+  background-color: #1e5abc;
+  border: none;
+  border-radius: 7px 7px 0px 0px;
+  margin: 0;
+  min-height: 3em;
+}
+
+.ui.menu .item {
+  color: white;
+  font-size: 1.5rem;
+}
+
