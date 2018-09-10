@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Icon, Menu, Button, Form, Input, Select } from 'semantic-ui-react';
+import { Container, Icon, Menu, Message, Button, Form, Input, Select } from 'semantic-ui-react';
 import './addFlight.css';
 import './App.css';
 
@@ -10,7 +10,10 @@ const options = [
 ]
 
 export default class AddFlight extends Component {
-  state = {}
+  constructor(props) {
+    super();
+    this.state = {}
+  }
 
   handleChange = (e, { value }) => this.setState({ value })
 
@@ -34,6 +37,27 @@ export default class AddFlight extends Component {
   componentWillMount() {
     this.setState({value: 'Christina Yuen'})
     //TODO: change to user info
+  }
+
+  renderMessage = () => {
+    if (this.props.addFlightError === true) {
+      return (
+        <Message positive>
+          <Message.Header>You have successfully added a flight.</Message.Header>
+          <p>
+            Go to your <b>schedule</b> down below to see now.
+          </p>
+        </Message>
+      )
+    } else if (this.props.addFlightError === false) {
+      return (
+        <Message
+          error
+          header='There was some errors with your submission'>
+          <p>Please try again.</p>
+        </Message>
+      )
+    }
   }
 
   render() {
@@ -60,6 +84,7 @@ export default class AddFlight extends Component {
             {this.renderNewPersonInfo()}
             <Form.Field control={Button}>Submit</Form.Field>
           </Form>
+            {this.renderMessage()}
         </div>
       </Container>
     )
