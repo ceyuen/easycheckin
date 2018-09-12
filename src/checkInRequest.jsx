@@ -1,12 +1,29 @@
 import axios from 'axios';
 
-export default class CheckInRequest {
-  hostName = 'http://192.168.1.100:57630/'
+const baseURL = 'http://192.168.1.100:57630/';
+const api = 'api/checkinrequests'
+export default class checkInRequests {
+//Access-Control-Allow-Origin: true as header
+  static getAllRequests = () => {
+    console.log('link: ', baseURL)
+    return axios.get(`${baseURL}${api}`)
+      .then((response) => {
+        let allRequestsArray = response.map((element) => {
+          return {
+            firstName: element.firstName,
+            lastName: element.lastName,
+            confirmationNumber: element.confirmationNumber
+          }
+        })
+        return allRequestsArray;
+      })
+  }
 
-  addNewRequest = () => {
-    axios.put(`${this.hostName}api/checkinrequests`)
+
+  static addNewRequest = () => {
+    return axios.put(`${baseURL}${api}`)
       .then(() => {
-        this.setState({addFlightError: true})
+        
       })
       .catch(() => {
 

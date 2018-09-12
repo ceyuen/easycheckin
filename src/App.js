@@ -16,11 +16,17 @@ class App extends Component {
     CheckInRequest.addNewRequest(); 
   }
 
+  getAllRequests = () => {
+    let allRequestsArray = CheckInRequest.getAllRequests();
+    console.log(CheckInRequest);
+  }
+
   render() {
     return (
       <div>
         <AddFlight addFlightError={this.state.addFlightError}/>
         <Schedule />
+        {this.getAllRequests()}
       </div>
     );
   }
