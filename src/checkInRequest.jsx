@@ -1,14 +1,16 @@
 import axios from 'axios';
 
 const baseURL = 'http://192.168.1.100:57630/';
-const api = 'api/checkinrequests'
+const api = 'api/checkinrequests';
+const headerRequest = {
+  'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token, Authorization',
+}
 export default class checkInRequests {
-//Access-Control-Allow-Origin: true as header
   static getAllRequests = () => {
-    console.log('link: ', baseURL)
-    return axios.get(`${baseURL}${api}`)
+    return axios.get(`${baseURL}${api}`, {headers: headerRequest})
       .then((response) => {
-        let allRequestsArray = response.map((element) => {
+        let allRequestsArray = response.data.map(element => {
           return {
             firstName: element.firstName,
             lastName: element.lastName,
@@ -17,6 +19,7 @@ export default class checkInRequests {
         })
         return allRequestsArray;
       })
+      .catch ((err) => console.log(err))
   }
 
 

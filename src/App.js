@@ -9,24 +9,28 @@ class App extends Component {
     super();
     this.state = {
       addFlightError: undefined,
+      allRequests: null
     }
   }
 
   addNewRequest = () => {
-    CheckInRequest.addNewRequest(); 
+    // CheckInRequest.addNewRequest(); 
   }
 
   getAllRequests = () => {
-    let allRequestsArray = CheckInRequest.getAllRequests();
-    console.log(CheckInRequest);
+    CheckInRequest.getAllRequests()
+      .then(data => this.setState({allRequests: data}))
+  }
+
+  componentDidMount() {
+    this.getAllRequests();
   }
 
   render() {
     return (
       <div>
         <AddFlight addFlightError={this.state.addFlightError}/>
-        <Schedule />
-        {this.getAllRequests()}
+        <Schedule allRequests={this.state.allRequests}/>
       </div>
     );
   }

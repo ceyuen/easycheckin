@@ -19,6 +19,7 @@ export default class Schedule extends Component {
   }
 
   render() {
+    console.log(this.props.allRequests)
     return (
       <Container className='container'>
       <Menu>
