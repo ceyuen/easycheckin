@@ -13,13 +13,17 @@ class App extends Component {
     }
   }
 
-  addNewRequest = () => {
-    // CheckInRequest.addNewRequest(); 
+  addNewRequest = (firstName, lastName, confirmationNumber, email, phoneNumber) => {
+    CheckInRequest.addNewRequest(firstName, lastName, confirmationNumber, email, phoneNumber)
+      .then(() => {
+        this.setState({addFlightError: false})
+        this.getAllRequests()
+      });
   }
 
   getAllRequests = () => {
     CheckInRequest.getAllRequests()
-      .then(data => this.setState({allRequests: data}))
+      .then(data => this.setState({allRequests: data}));
   }
 
   componentDidMount() {
@@ -29,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AddFlight addFlightError={this.state.addFlightError}/>
+        <AddFlight addFlightError={this.state.addFlightError} addNewRequest={this.addNewRequest}/>
         <Schedule allRequests={this.state.allRequests}/>
       </div>
     );
