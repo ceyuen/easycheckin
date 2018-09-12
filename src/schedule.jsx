@@ -11,25 +11,18 @@ export default class Schedule extends Component {
   renderContent = () => {
     if (this.state.value === "upcoming") {
       return (
-      <Upcoming />
+      <Upcoming allRequests={this.props.allRequests}/>
       )
-    } else if (this.state.value === "history") {
-
     }
   }
 
   render() {
-    console.log(this.props.allRequests)
     return (
       <Container className='container'>
       <Menu>
         <Menu.Item value="upcoming" onClick={this.handleClick}>
           <Icon name="arrow alternate circle up" />
           Upcoming
-        </Menu.Item>
-        <Menu.Item value="history" onClick={this.handleClick}>
-          <Icon name="arrow alternate circle left outline" />
-          History
         </Menu.Item>
       </Menu>
       <div className="content">
